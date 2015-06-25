@@ -15,8 +15,7 @@
 // Contender class
 @interface Contender : NSObject
 
-- (instancetype)initWithName:(NSString *)name;
-    
+- (instancetype)initWithName:(NSString *)name; //instancetype returns instant of class
 - (void)addVote;
 - (NSInteger)votesReceived;
 - (NSString *)name;
@@ -206,6 +205,26 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
+        Election *AnimalPresidentsElection = [[Election alloc] init];
+        [AnimalPresidentsElection setElectionName:@"Animal President Election"];
+        
+        Contender *ApeLincoln = [[Contender alloc] init];
+        Contender *PandadrewJackson = [[Contender alloc] init];
+        Contender *BearackObama = [[Contender alloc] init];
+        
+        [ApeLincoln initWithName:@"Ape Lincoln"];
+        [PandadrewJackson initWithName:@"Pandadrew Jackson"];
+        [BearackObama initWithName:@"Bearack Obama"];
+        
+        [AnimalPresidentsElection addContender:ApeLincoln];
+        [AnimalPresidentsElection addContender:PandadrewJackson];
+        [AnimalPresidentsElection addContender:BearackObama];
+        
+        ElectionManager *AnimalPresidentManager = [[ElectionManager alloc]init];
+        [AnimalPresidentManager manage:AnimalPresidentsElection];
+        [AnimalPresidentManager initiatePolling];
+        
+        [AnimalPresidentManager displayResults];
     }
     return 0;
 }
